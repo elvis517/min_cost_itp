@@ -9,5 +9,5 @@ dist/
 .coverage
 htmlcov/
 .DS_Store
-.json
-.log
+*.json
+*.log
