@@ -1,0 +1,4 @@
+# Variable ID and positive integer cost. Unlisted candidates cost one.
+1 7
+2 2
+3 2

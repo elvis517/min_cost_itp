@@ -1,0 +1,5 @@
+c B = NOT x1 AND NOT x2 AND NOT x3
+p cnf 3 3
+-1 0
+-2 0
+-3 0

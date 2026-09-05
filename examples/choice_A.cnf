@@ -1,0 +1,4 @@
+c A = x1 AND (x2 OR x3)
+p cnf 3 2
+1 0
+2 3 0

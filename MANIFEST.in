@@ -1,0 +1,3 @@
+include LICENSE PLAN.md
+recursive-include examples *.cnf *.txt *.py
+recursive-include tests *.py
