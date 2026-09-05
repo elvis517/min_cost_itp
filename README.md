@@ -18,7 +18,7 @@ python3 -m venv .venv
 . .venv/bin/activate
 python -m pip install .
 
-min-cost-itp examples/choice_A.cnf examples/choice_B.cnf
+min-cost-itp examples/choice/choice_A.cnf examples/choice/choice_B.cnf
 ```
 
 ```text
@@ -32,7 +32,7 @@ Either `{1}` or `{2, 3}` suffices. Unit costs select `{1}`. Make variable 1
 expensive using the included cost file:
 
 ```sh
-min-cost-itp examples/choice_A.cnf examples/choice_B.cnf --costs examples/costs.txt
+min-cost-itp examples/choice/choice_A.cnf examples/choice/choice_B.cnf --costs examples/choice/costs.txt
 ```
 
 ```text
@@ -49,6 +49,10 @@ package-index release.
 PySAT is pinned to the version used for validation. Pip downloads its native
 solver wheels where available; other platforms may need a C/C++ compiler to
 build PySAT. Linux is covered by the included CI configuration.
+
+For a larger input, see the [frogs unroll-8 example](examples/frogs.5.prop1-func-interl-k8/README.md):
+it uses the 0818 fair-comparison cut at `s1`, with 261 shared variables, and
+includes A/B DIMACS files, editable costs, signal names, and a verification script.
 
 ## Input contract
 
@@ -96,9 +100,9 @@ Pass consecutive pairs or repeat `--pair`:
 
 ```sh
 min-cost-itp \
-  --pair examples/choice_A.cnf examples/choice_B.cnf \
-  --pair examples/force_A.cnf examples/force_B.cnf \
-  --costs examples/costs.txt --json
+  --pair examples/choice/choice_A.cnf examples/choice/choice_B.cnf \
+  --pair examples/choice/force_A.cnf examples/choice/force_B.cnf \
+  --costs examples/choice/costs.txt --json
 ```
 
 The result selects `[1]` at cost `7`: the second pair requires variable 1,
@@ -186,7 +190,7 @@ Python API is the replacement point.
 Choose the SAT backend for both pair queries and weighted optimization:
 
 ```sh
-min-cost-itp examples/choice_A.cnf examples/choice_B.cnf --solver minisat22
+min-cost-itp examples/choice/choice_A.cnf examples/choice/choice_B.cnf --solver minisat22
 ```
 
 The supported names are `cadical195` (default), `glucose3`, and `minisat22`.
@@ -194,6 +198,10 @@ In Python, pass `solver="glucose3"`. These backends support the incremental
 assumptions and core queries needed by the search.
 
 ## Why the answer is a minimum
+
+See [ALGORITHM.md](ALGORITHM.md) for the full encoding, pseudocode, and
+correctness argument. The original solver defaults are retained; experimental
+notes and measurements are under `benchmarks/`. Source snapshots are ignored.
 
 For a proposed support `S`, build disjoint copies `A(x)` and `B(y)` and require
 `x_v = y_v` for each shared `v` in `S`. The resulting formula is UNSAT exactly

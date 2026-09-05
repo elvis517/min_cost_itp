@@ -9,5 +9,8 @@ dist/
 .coverage
 htmlcov/
 .DS_Store
+
+# Local experiments are not repository artifacts.
+/benchmarks/
 *.json
 *.log

@@ -8,7 +8,7 @@ import pytest
 from min_cost_itp import InputError, parse_dimacs, read_costs
 
 ROOT = Path(__file__).resolve().parents[1]
-EXAMPLES = ROOT / "examples"
+EXAMPLES = ROOT / "examples" / "choice"
 
 
 def parse(text):
